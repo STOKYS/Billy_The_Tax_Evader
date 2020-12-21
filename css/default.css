@@ -1,0 +1,65 @@
+/* imports */
+
+
+
+/* main */
+
+*{
+
+}
+
+body{
+    background-color: rgb(10,15,20);
+}
+
+main{
+
+}
+
+canvas{
+}
+
+button{
+    width: 200px;
+    height: 78px;
+    font-size: 35px;
+    border: 1px gray solid;
+    border-radius: 50px;
+    transition: background-color 0.2s ease;
+}
+
+button:hover{
+    background-color: grey;
+}
+
+button:disabled{
+    background-color: green;
+}
+
+button:active{
+    background-color: rgb(13, 17, 23);
+}
+
+button:focus{
+    outline: none;
+}
+
+
+/* ids */
+
+
+
+/* classes */
+
+.game{
+    margin: auto;
+    width: 1700px;
+    height: 850px;
+    border: 1px solid gray;
+}
+
+.buttons{
+    margin: auto;
+    width: 200px;
+    height: 78px;
+}
