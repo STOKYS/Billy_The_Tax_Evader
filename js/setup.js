@@ -2,9 +2,8 @@ const canvas = document.getElementById("canvas")
 const ctx = canvas.getContext("2d");
 ctx.globalCompositeOperation = "source-over";
 
-//const score = document.getElementById("score")
+const score = document.getElementById("score")
 const button = document.getElementById("start")
-const jumping = document.getElementById("jump")
 const jump = 32;
 
 
@@ -23,3 +22,5 @@ const playerImg04 = new Image()
 playerImg04.src = "img/player/04.png"
 const playerImg05 = new Image()
 playerImg05.src = "img/player/05.png"
+const obstacleImg = new Image()
+obstacleImg.src = "img/obstacle/obstacle.png"
