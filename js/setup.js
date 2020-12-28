@@ -24,3 +24,4 @@ const playerImg05 = new Image()
 playerImg05.src = "img/player/05.png"
 const obstacleImg = new Image()
 obstacleImg.src = "img/obstacle/obstacle.png"
+

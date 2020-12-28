@@ -48,10 +48,26 @@ class obstacle {
     }
     update() {
         if (this.x < -50){
-            this.x = 1700
+            this.x = 2300 - (Math.random() * 600)
         }
         this.x -= 5 * speedUp
         ctx.drawImage(obstacleImg, this.x, this.y, this.width, this.height)
+        this.crash()
+    }
+    crash() {
+        let myleft = this.x;
+        let myright = this.x + (this.width);
+        let mytop = this.y;
+        let mybottom = this.y + (this.height);
+        let otherleft = playerup.x;
+        let otherright = playerup.x + (playerup.width);
+        let othertop = playerup.y;
+        let otherbottom = playerup.y + (playerup.height);
+        if (!((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright))) {
+            let audio = new Audio('audio/death.mp3');
+            audio.play();
+            gameover = true
+        }
     }
 }
 
@@ -64,7 +80,7 @@ function frame(i) {
 }
 
 function createObst(){
-    for (let i = 1; i <= 3; i++){
+    for (let i = 1; i <= 2; i++){
         obstacles.push(new obstacle((canvas.width + 50) * i/2 , 380, 50, 50));
     }
     console.log(obstacles)
@@ -75,17 +91,21 @@ function update() {
         timeOne = Date.now()
         game.cycle()
         playerup.update()
-        for (let i = 0; i <= 2; i++){
+        for (let i = 0; i <= 1; i++){
             obstacles[i].update()
         }
     }
-    requestAnimationFrame(update)
+    if (gameover != true){
+        requestAnimationFrame(update)
+    }
 }
 /* events */
 
-document.onkeyup = function movement(key) {
+document.onkeydown = function movement(key) {
     if ((key.keyCode == 32 || key.keyCode == 38 || key.keyCode == 87) && playerup.jump == false) {
         playerup.jump = true
+        let audio = new Audio('audio/jump.mp3');
+        audio.play();
     }
 }
 
@@ -94,19 +114,17 @@ document.onkeyup = function movement(key) {
 let game = {
     cycle: function () {
         this.background()
-        console.log(times)
     },
     background: function () {
         if (speedUp < 3) {
-            console.log(speedUp)
             speedUp += 0.0001
         }
-        if (phase < -6790) {
+        if (phase < -6700) {
             phase = 0
         }
         phase -= 5 * speedUp
         times -= 5 * speedUp
-        console.log(phase + " " + times)
+        console.log(phase)
         score.innerText = `Tax Money Evaded: \$${(times / -100).toFixed(2)}`
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(backgroundImg, phase, 0, 8500, 850)
@@ -119,12 +137,15 @@ let times = 0
 let phase = 0
 let timeOne = 0;
 let speedUp = 1;
+let gameover = false;
 
 $("#start").on("click", function () {
     button.disabled = true
     timeOne = Date.now()
     createObst()
     requestAnimationFrame(update)
+    let audio = new Audio('audio/background.mp3');
+    audio.play();
 })
 
 let playerup = new player(50, 350, 45, 80)
