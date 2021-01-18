@@ -48,7 +48,7 @@ class obstacle {
     }
     update() {
         if (this.x < -50){
-            this.x = 2300 - (Math.random() * 600)
+            this.x = 2100 - (Math.random() * 400)
         }
         this.x -= 5 * speedUp
         ctx.drawImage(obstacleImg, this.x, this.y, this.width, this.height)
@@ -64,8 +64,8 @@ class obstacle {
         let othertop = playerup.y;
         let otherbottom = playerup.y + (playerup.height);
         if (!((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright))) {
-            let audio = new Audio('audio/death.mp3');
-            audio.play();
+            //let audio = new Audio('audio/death.mp3');
+            //audio.play();
             gameover = true
         }
     }
@@ -144,8 +144,8 @@ $("#start").on("click", function () {
     timeOne = Date.now()
     createObst()
     requestAnimationFrame(update)
-    let audio = new Audio('audio/background.mp3');
-    audio.play();
+    //let audio = new Audio('audio/background.mp3');
+    //audio.play();
 })
 
 let playerup = new player(50, 350, 45, 80)

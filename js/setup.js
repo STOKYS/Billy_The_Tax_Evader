@@ -8,8 +8,7 @@ const jump = 32;
 
 
 const backgroundImg = new Image()
-backgroundImg.src = "img/background.png"
-
+special_event()
 const playerImg00 = new Image()
 playerImg00.src = "img/player/00.png"
 const playerImg01 = new Image()
@@ -24,4 +23,15 @@ const playerImg05 = new Image()
 playerImg05.src = "img/player/05.png"
 const obstacleImg = new Image()
 obstacleImg.src = "img/obstacle/obstacle.png"
+
+function special_event(){
+    let arr = ["img/background.png", "img/backgroundChristmas.png"]
+    let i = 0;
+    let thisDate = new Date
+    if ((thisDate.getDate() == 24 || thisDate.getDate() == 25) && thisDate.getMonth() == 11){
+        i = 1
+    }
+    backgroundImg.src = arr[i]
+}
+
 
